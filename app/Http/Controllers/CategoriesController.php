@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 USE App;
 use App\Category;
+use App\Posts;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -54,7 +56,13 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::all()->find($id);
+        $posts = Posts::query()->where('category_id',$id)->get();
 
-        return view('categories.show',['category'=>$category]);
+        return view('categories.show',['category'=>$category,'posts'=>$posts]);
+    }
+    public function destroy($id)
+    {
+        $category = Category::all()->find($id)->delete();
+        return redirect()->route('categories.index');
     }
 }
