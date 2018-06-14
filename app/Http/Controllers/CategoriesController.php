@@ -14,6 +14,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = App\Category::all();
+        //header('Content-Type: application/json');
+        //echo "JSON"."<br>";
+        //echo json_encode($categories);
         return view('categories',compact('categories'));
     }
     public function getCategoryList()
@@ -57,6 +60,10 @@ class CategoriesController extends Controller
     {
         $category = Category::all()->find($id);
         $posts = Posts::query()->where('category_id',$id)->get();
+        //header('Content-Type: application/json');
+        //echo "JSON"."<br>";
+        //$array = [$category,$posts];
+        //echo json_encode($array);
 
         return view('categories.show',['category'=>$category,'posts'=>$posts]);
     }

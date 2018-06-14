@@ -17,7 +17,7 @@
         <textarea name="description"><?php echo e($post->description); ?></textarea><br>
         <label>Category id:</label><br>
         <input type="text" name="category_id" value="<?php echo e($post->category_id); ?>"/><br>
-        <input type="submit" value="Add">
+        <input type="submit" value="Update">
     </div>
 </form>
 </body>

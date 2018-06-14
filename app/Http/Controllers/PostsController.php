@@ -11,13 +11,15 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Posts::all();
-
+        //header('Content-Type: application/json');
+        //echo json_encode($posts);
         return view('posts.posts',['posts'=>$posts]);
     }
     public function show($id)
     {
         $post = Posts::all()->find($id);
-
+        //header('Content-Type: application/json');
+        //echo json_encode($post);
         return view('posts.show',['post'=>$post]);
     }
     public function create()
