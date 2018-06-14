@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
+    //Start page of categories
     public function index()
     {
         $categories = App\Category::all();
@@ -19,15 +20,12 @@ class CategoriesController extends Controller
         //echo json_encode($categories);
         return view('categories',compact('categories'));
     }
-    public function getCategoryList()
-    {
-        $categories = App\Category::all();
-        return view('getCategoryList',compact('categories'));
-    }
+    //function redirect to categories.create page
     public function create()
     {
         return view('categories.create');
     }
+    //function to create new category
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -38,12 +36,15 @@ class CategoriesController extends Controller
         $category->save();
         return redirect()->route('categories.index');
     }
+    //function to get editing category with id $id,
+    //and redirect to categories.edit page
     public function edit($id)
     {
         $category = Category::all()->find($id);
 
         return view('categories.edit',['category'=>$category]);
     }
+    //function to edit category with id $id
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -56,6 +57,7 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index');
     }
+    //function to show category, and posts in that category
     public function show($id)
     {
         $category = Category::all()->find($id);
@@ -67,6 +69,7 @@ class CategoriesController extends Controller
 
         return view('categories.show',['category'=>$category,'posts'=>$posts]);
     }
+    //function to delete category
     public function destroy($id)
     {
         $category = Category::all()->find($id)->delete();
